@@ -1,0 +1,100 @@
+---
+- name: play to target webservers
+  post_tasks:
+    - name: print a message
+      ansible.builtin.debug:
+        msg: end of play after handlers
+  hosts: webservers
+  force_handlers: true
+  vars:
+    filename_to_deploy: index.html
+    valid_distros:
+      - RedHat
+      - CentOS
+    apache_port: 8080
+    allow_override: false
+  tasks:
+
+    - name: create users
+      ansible.builtin.user:
+        name: '{{ item.username }}'
+        comment: '{{ item.name }}'
+        state: present
+      loop: '{{ users_to_create }}'
+
+
+    - name: run web tasks
+      include_tasks: '{{ task_file }}'
+
+    - name: show packageresult
+      ansible.builtin.debug:
+        var: packageresult
+
+    - name: service start
+      ansible.builtin.service:
+        name: '{{ item }}'
+        state: started
+        enabled: true
+      loop: '{{ web_services }}'
+
+    - name: open firewall port
+      ansible.posix.firewalld:
+        port: '{{ apache_port }}/tcp'
+        immediate: true
+        permanent: true
+        state: enabled
+
+    - name: show the value of a variable
+      ansible.builtin.debug:
+        var: content_to_deploy
+        verbosity: 2
+
+    - name: deploy content
+      ansible.builtin.copy:
+        content: |
+          {{ content_to_deploy }}
+          Distribution is {{ ansible_facts.distribution }}
+          Version is {{ ansible_facts.distribution_major_version }}
+          IP address is {{ ansible_facts.default_ipv4.address }}
+          IP address is {{ ansible_facts['default_ipv4']['address'] }}
+          Distribution is {{ ansible_distribution }}
+        dest: /var/www/html/{{ filename_to_deploy }}
+      register: copyresult
+
+    - name: run a command
+      ansible.builtin.command: /home/devops/bin/testscript
+      register: command_output
+
+    - name: do something if pass
+      ansible.builtin.debug:
+        msg: it did pass
+      when: '"PASS" in command_output.stdout'
+
+    - name: look at output
+      ansible.builtin.debug:
+        var: groups
+  
+  handlers:
+    - name: restart httpd
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+
+    
+
+- name: second play
+  hosts: database
+  become: true
+  tasks:
+
+    - name: create users
+      ansible.builtin.user:
+        name: '{{ item.username }}'
+        comment: '{{ item.name }}'
+        state: present
+      loop: '{{ users_to_create }}'
+      when: item.dbadmin == true     
+
+    - name: test servera
+      ansible.builtin.uri:
+        url: http://servera.lab.example.com/

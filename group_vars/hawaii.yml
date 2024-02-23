@@ -1,0 +1,4 @@
+content_to_deploy: |
+  content from Hawaii
+  from group_vars
+  this is different

@@ -1,0 +1,6 @@
+---
+# defaults file for dbconfig
+dbconfig_user: dbuser
+dbconfig_password: 12345
+dbconfig_database: db
+dbconfig_datadir: /var/lib/mysql

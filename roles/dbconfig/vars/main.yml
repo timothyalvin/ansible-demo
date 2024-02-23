@@ -1,0 +1,3 @@
+---
+# vars file for dbconfig
+dbconfig_package: mariadb-server

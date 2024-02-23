@@ -1,0 +1,22 @@
+[webservers]
+servera.lab.example.com
+serverb.lab.example.com
+
+[database]
+serverc.lab.example.com
+serverd.lab.example.com
+
+[texas]
+servera.lab.example.com
+serverc.lab.example.com
+
+[hawaii]
+serverb.lab.example.com
+serverd.lab.example.com
+
+[usa:children]
+hawaii
+texas
+
+
+#comments like this

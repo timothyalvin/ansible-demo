@@ -1,0 +1,22 @@
+---
+- name: security
+  hosts: webservers
+  tasks:
+    - name: run a command
+      ansible.builtin.command: /home/devops/bin/testscript
+      register: command_output
+      failed_when: '"PASS" not in command_output.stdout'
+      changed_when: false
+
+    - name: stop banned services
+      ansible.builtin.service:
+        name: '{{ item }}'
+        state: stopped
+        enabled: false
+      loop: "{{ banned_services }}"
+      ignore_errors: true
+
+    - name: remove some packaged
+      ansible.builtin.dnf:
+        name: telnet-server
+        state: absent

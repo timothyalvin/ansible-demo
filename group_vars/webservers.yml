@@ -1,0 +1,4 @@
+web_services:
+  - httpd
+  - firewalld
+task_file: tasks/web_tasks.yml

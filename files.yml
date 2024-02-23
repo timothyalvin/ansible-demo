@@ -1,0 +1,36 @@
+---
+- name: files demo
+  hosts: webservers
+  gather_facts: true
+  tasks:
+    - name: create my project directory
+      ansible.builtin.file:
+        path: /var/www/html/project
+        state: absent
+        owner: root
+        group: wheel
+        mode: u=rwx,g=rwx,o=r
+
+    - name: copy a file to the server
+      ansible.builtin.copy:
+        src: files/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: copy a file from one place to another within that remote server
+      ansible.builtin.copy:
+        src: /etc/hosts
+        dest: /etc/hosts.backup.ansible
+        remote_src: true
+
+    - name: add my db server to /etc/hosts
+      ansible.builtin.blockinfile:
+        path: /etc/hosts
+        block: 1.2.3.7    database.example.com
+
+    - name: copy logs
+      ansible.builtin.fetch:
+        src: /var/log/messages
+        dest: logs

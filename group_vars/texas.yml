@@ -1,0 +1,7 @@
+content_to_deploy: |
+  content from texas
+  from group_vars
+  for texas
+packages:
+  - httpd
+  - mod_ssl

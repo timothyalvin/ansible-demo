@@ -1,0 +1,11 @@
+---
+- name: ping demo
+  hosts: 
+    - webservers
+    - serverd.lab.example.com
+    - '!hawaii'
+    - s*
+  gather_facts: false
+  tasks:
+    - name: ping
+      ansible.builtin.ping:

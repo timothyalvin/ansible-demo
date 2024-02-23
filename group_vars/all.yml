@@ -1,0 +1,21 @@
+content_to_deploy: value for all undefined servers
+packages:
+  - httpd
+  - bash
+users_to_create:
+  - name: Alice Aperson
+    username: alice
+    dbadmin: true
+  - name: Bob Bperson
+    username: bob
+    dbadmin: false
+  - name: Charles Cperson
+    username: charlie
+    dbadmin: true
+
+banned_services:
+  - telnetd
+  - ws_ftpd
+  - sendmail
+  - Spooler
+  - httpd

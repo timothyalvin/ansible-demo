@@ -1,0 +1,6 @@
+---
+- name: journal demo
+  hosts: all
+  roles:
+    - role: rhel-system-roles.journald
+      journald_persistent: true

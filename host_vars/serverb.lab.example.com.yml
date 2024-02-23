@@ -1,0 +1,5 @@
+content_to_deploy: |
+  This is for serverb
+  it's set in host_vars
+  this will override the group
+task_file: tasks/web_tasks_serverb.yml

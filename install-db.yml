@@ -1,0 +1,6 @@
+---
+- name: roles demo
+  hosts: database
+  roles:
+    - role: dbconfig
+      dbconfig_datadir: /var/lib/some/other/place

@@ -1,0 +1,34 @@
+---
+    - name: package install
+      ansible.builtin.dnf:
+        name: '{{ packages }}'
+        state: latest
+      when: ansible_facts.distribution in valid_distros
+      register: packageresult
+
+    - ansible.builtin.debug:
+        var: packages
+      when: false
+
+    - name: block for copying out the config
+      block:
+
+        - name: copy out config
+          ansible.builtin.template:
+            src: templates/httpd.conf.j2
+            dest: /etc/httpd/conf/httpd.conf
+          notify: restart httpd
+        - name: doing something else
+          ansible.builtin.ping:
+
+        - name: another
+          ansible.builtin.ping:
+
+      rescue:
+        - name: copy out from alternate source
+          ansible.builtin.copy:
+            src: files/httpd.conf.bam
+            dest: /etc/httpd/conf/httpd.conf
+          notify: restart httpd
+
+
