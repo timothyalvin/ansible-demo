@@ -4,5 +4,5 @@
     - webservers
   gather_facts: false
   tasks:
-    - name: Ping
+    - name: Ping the host
       ansible.builtin.ping:
