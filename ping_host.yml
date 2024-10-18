@@ -2,9 +2,6 @@
 - name: Ping demo
   hosts:
     - webservers
-    - serverd.lab.example.com
-    - '!hawaii'
-    - s*
   gather_facts: false
   tasks:
     - name: Ping
