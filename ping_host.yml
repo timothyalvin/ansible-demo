@@ -1,10 +1,6 @@
 ---
 - name: Ping demo
-  hosts:
-    - webservers
-    - serverd.lab.example.com
-    - '!hawaii'
-    - s*
+  hosts: all
   gather_facts: false
   tasks:
     - name: Ping
