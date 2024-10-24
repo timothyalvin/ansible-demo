@@ -1,0 +1,9 @@
+---
+- name: playbook demo
+  hosts: servera.lab.example.com
+  tasks:
+    - name: copy file over
+      ansible.builtin.copy:
+        src: files/some
+        dest: /var/www/html/index.html
+
