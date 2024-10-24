@@ -6,4 +6,5 @@
       ansible.builtin.copy:
         src: files/some
         dest: /var/www/html/index.html
+        mode: 0600
 
