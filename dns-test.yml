@@ -1,0 +1,8 @@
+---
+- name: ee test
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: show dns entry
+      debug:
+        msg: dns for redhat.com is {{ lookup("community.dns.lookup","redhat.com") }}
