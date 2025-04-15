@@ -1,6 +1,7 @@
 ---
 - name: play to target webservers
   hosts: webservers
+  gather_facts: false
   vars:
     filename_to_deploy: index.html
     valid_distros:
@@ -65,6 +66,7 @@
 - name: second play
   hosts: database
   become: true
+  gather_facts: false
   tasks:
 
     - name: create users
