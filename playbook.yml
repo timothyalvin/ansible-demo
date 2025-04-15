@@ -1,17 +1,12 @@
 ---
 - name: play to target webservers
-  post_tasks:
-    - name: print a message
-      ansible.builtin.debug:
-        msg: end of play after handlers
   hosts: webservers
-  force_handlers: true
   vars:
     filename_to_deploy: index.html
     valid_distros:
       - RedHat
       - CentOS
-    apache_port: 8080
+    apache_port: 80
     allow_override: false
   tasks:
 
@@ -61,26 +56,11 @@
         dest: /var/www/html/{{ filename_to_deploy }}
       register: copyresult
 
-    - name: run a command
-      ansible.builtin.command: /home/devops/bin/testscript
-      register: command_output
-
-    - name: do something if pass
-      ansible.builtin.debug:
-        msg: it did pass
-      when: '"PASS" in command_output.stdout'
-
-    - name: look at output
-      ansible.builtin.debug:
-        var: groups
-  
   handlers:
     - name: restart httpd
       ansible.builtin.service:
         name: httpd
         state: restarted
-
-    
 
 - name: second play
   hosts: database
