@@ -1,6 +1,9 @@
 ---
 # files.yml  ping_host.yml  playbook.yml  security.yml
 
+- name: gather facts
+  hosts: all
+
 - name: start with ping_host.yml
   import_playbook: ping_host.yml
 
