@@ -3,7 +3,7 @@
   hosts: webservers
   tasks:
     - name: run a command
-      ansible.builtin.command: /home/devops/bin/testscript
+      ansible.builtin.command: /home/devops/bin/testscript2
       register: command_output
       failed_when: '"PASS" not in command_output.stdout'
       changed_when: false
