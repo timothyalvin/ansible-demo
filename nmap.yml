@@ -1,0 +1,5 @@
+---
+plugin: community.general.nmap
+address: 172.25.250.0/24
+port: 22
+open: true
