@@ -6,6 +6,7 @@
     valid_distros:
       - RedHat
       - CentOS
+      - Fedora
     apache_port: 80
     allow_override: false
   tasks:
