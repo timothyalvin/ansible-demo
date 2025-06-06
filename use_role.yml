@@ -1,0 +1,5 @@
+---
+- name: use a role
+  hosts: servera.lab.example.com
+  roles:
+    - thurley.app.web
