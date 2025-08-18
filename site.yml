@@ -7,13 +7,6 @@
 - name: start with ping_host.yml
   import_playbook: ping_host.yml
 
-- name: this is a play
-  hosts: servera.lab.example.com
-  tasks:
-    - name: task in between
-      ansible.builtin.debug:
-        msg: whatever the task may be
-
 - name: then run security.yml
   import_playbook: security.yml
   vars:

@@ -1,8 +1,0 @@
----
-- name: tests
-  hosts: database
-  tasks: 
-    - name: launchd thing
-      community.general.launchd:
-        name: org.memcached
-        state: stopped
