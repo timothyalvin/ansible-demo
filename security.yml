@@ -10,7 +10,7 @@
 
     - name: stop banned services
       ansible.builtin.service:
-        name: '{{ item }}'
+        name: "{{ item }}"
         state: stopped
         enabled: false
       loop: "{{ banned_services }}"
