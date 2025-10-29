@@ -132,18 +132,6 @@ DocumentRoot "/var/www/html"
     Require all granted
 </Directory>
 
-{% for user in users_to_create %}
-
-<Directory "/home/{{ user.username | capitalize }}/www">
-{% if allow_override %}
-    AllowOverride None
-{% endif %}
-    # Allow open access:
-    Require all granted
-</Directory>
-
-{% endfor %}
-
 
 # Further relax access to the default document root:
 <Directory "/var/www/html">

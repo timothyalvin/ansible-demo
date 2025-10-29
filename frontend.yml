@@ -1,0 +1,41 @@
+---
+- name: httpd installation
+  hosts: frontend
+  vars:
+    filename_to_deploy: index.html
+    apache_port: 80
+  tasks:
+
+    - name: run web tasks
+      import_tasks: 'tasks/web_tasks.yml'
+
+    - name: service start
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: open firewall port
+      ansible.posix.firewalld:
+        port: '{{ apache_port }}/tcp'
+        immediate: true
+        permanent: true
+        state: enabled
+
+    - name: deploy content
+      ansible.builtin.copy:
+        content: |
+          {{ content_to_deploy }}
+          Distribution is {{ ansible_facts.distribution }}
+          Version is {{ ansible_facts.distribution_major_version }}
+          IP address is {{ ansible_facts.default_ipv4.address }}
+          IP address is {{ ansible_facts['default_ipv4']['address'] }}
+          Distribution is {{ ansible_distribution }}
+        dest: /var/www/html/{{ filename_to_deploy }}
+
+  handlers:
+    - name: restart httpd
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+
