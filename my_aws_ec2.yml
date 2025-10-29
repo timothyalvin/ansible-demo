@@ -4,3 +4,4 @@ regions:
   - us-east-2
 keyed_groups:
   - key: tags.app
+    separator: ''
