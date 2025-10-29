@@ -43,6 +43,8 @@
           IP address is {{ ansible_facts.default_ipv4.address }}
           IP address is {{ ansible_facts['default_ipv4']['address'] }}
           Distribution is {{ ansible_distribution }}
+          Cached value is {{ var12345 | default('missing') }}
+          probably wrong cached value is {{ ansible_facts.var12345 | default('missing') }}
         dest: /var/www/html/{{ filename_to_deploy }}
 
   handlers:

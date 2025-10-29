@@ -2,3 +2,8 @@
 - name: gather facts
   hosts: all
   gather_facts: true
+  tasks:
+    - name: set fact
+      ansible.builtin.set_fact:
+        var12345: asdf
+        cacheable: true
