@@ -6,6 +6,17 @@
     apache_port: 80
   tasks:
 
+    - name: install firewalld
+      ansible.builtin.dnf:
+        name: firewalld
+        state: present
+
+    - name: start firewalld
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+
     - name: run web tasks
       import_tasks: 'tasks/web_tasks.yml'
 
