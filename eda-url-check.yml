@@ -1,3 +1,4 @@
+---
 - name: events about URLs
   hosts: all
   sources:
