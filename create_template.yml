@@ -1,0 +1,19 @@
+---
+- name: template demo
+  hosts: localhost
+  vars:
+    token: XPIMgxQy8mx2W5eSkDNL8hm3Dka5fT
+    api: https://aap.mshome.net
+  tasks:
+    - name: create a job template
+      ansible.controller.job_template:
+        name: automation demo
+        aap_token: "{{ token }}"
+        controller_host: "{{ api }}"
+        credentials:
+          - aws_ssh_creds
+        inventory: demo constructed
+        organization: default
+        project: demo github
+        playbook: security.yml
+        state: present
