@@ -17,3 +17,4 @@
         project: demo github
         playbook: security.yml
         state: present
+        validate_certs: false
