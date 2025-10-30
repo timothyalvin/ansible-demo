@@ -11,9 +11,9 @@
         aap_token: "{{ token }}"
         controller_host: "{{ api }}"
         credentials:
-          - aws_ssh_creds
+          - aws ssh creds
         inventory: demo constructed
-        organization: default
+        organization: Default
         project: demo github
         playbook: security.yml
         state: present
