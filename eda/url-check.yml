@@ -1,0 +1,16 @@
+- name: events about URLs
+  hosts: all
+  sources:
+    - name: URL check
+      ansible.eda.url_check:
+        urls:
+          - https://www.redhat.com
+          - http://aap.mshome.net
+        delay: 15
+        
+  rules:
+    - name: show event
+      action:
+        debug:
+          var: event
+
