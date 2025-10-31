@@ -9,6 +9,15 @@
         delay: 60
         
   rules:
+
+    - name: launch frontend playbook
+      condition: event['url_check']['status'] == "down"
+      action:
+        run_job_template:
+          name: demo frontend setup
+          organization: Default
+          include_events: false
+
     - name: debug
       condition: true
       action:
