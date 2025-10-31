@@ -5,8 +5,8 @@
     - name: URL check
       ansible.eda.url_check:
         urls:
-          - http://aap.mshome.net
-        delay: 120
+          - http://ec2-3-135-9-17.us-east-2.compute.amazonaws.com
+        delay: 60
         
   rules:
     - name: debug
