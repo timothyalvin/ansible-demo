@@ -1,7 +1,6 @@
 ---
 - name: httpd installation
   hosts: frontend
-  gather_facts: false
   vars:
     filename_to_deploy: index.html
     apache_port: 80
