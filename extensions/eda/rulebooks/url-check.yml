@@ -1,5 +1,6 @@
 ---
 - name: events about URLs
+  hosts: all
   sources:
     - name: URL check
       ansible.eda.url_check:
